@@ -1,43 +1,48 @@
 package com.example.rxjavademo;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.util.Log;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
-
-import java.util.concurrent.TimeUnit;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        Button btn = findViewById(R.id.button);
 
-        changeActivity();
+        int startValue = 1;
+        int incrementValue = 1;
+//        Flowable.fromCallable(() -> doSomeThing(5))
+//                .map(integer -> integer +10)
+//                .subscribe(value -> Log.d("fromCallable", ""+value));
+
+        Flowable<Integer> flowable = Flowable.generate(() -> startValue, (s, emitter) -> {
+            int nextValue = s + incrementValue;
+            if (nextValue == 1000) {
+                emitter.onComplete();
+            } else {
+                emitter.onNext(nextValue);
+            }
+            return nextValue;
+        }, i -> Log.d("sss", ""+ i.toString()));
+
+        flowable.subscribe(value -> Log.d("generate", "" + value));
+
+        btn.setOnClickListener(view -> Observable.generate(emitter -> {
+            emitter.onNext(1);
+            emitter.onComplete();
+        })
+                .subscribe(value -> Log.d("ButtonClicked", "" + value)));
     }
 
-    @SuppressLint("CheckResult")
-    private void changeActivity() {
-        Single.timer(5, TimeUnit.SECONDS).subscribe(new SingleObserver<Long>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onSuccess(Long aLong) {
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-        });
+    private int doSomeThing(int i) {
+        return i+5;
     }
 }

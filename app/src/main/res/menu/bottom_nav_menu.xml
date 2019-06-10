@@ -16,4 +16,13 @@
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="@string/title_notifications"/>
 
+    <item
+            android:id="@+id/navigation_order"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/order"/>
+    <item
+            android:id="@+id/navigation_food"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/food"/>
+
 </menu>

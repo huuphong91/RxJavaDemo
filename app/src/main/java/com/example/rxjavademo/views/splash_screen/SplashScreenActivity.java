@@ -1,9 +1,11 @@
-package com.example.rxjavademo;
+package com.example.rxjavademo.views.splash_screen;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.rxjavademo.R;
+import com.example.rxjavademo.views.main.MainActivity;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;

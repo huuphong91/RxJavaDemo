@@ -12,10 +12,10 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".MainActivity"
+                android:name=".views.main.MainActivity"
                 android:label="@string/title_activity_main">
         </activity>
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".views.splash_screen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

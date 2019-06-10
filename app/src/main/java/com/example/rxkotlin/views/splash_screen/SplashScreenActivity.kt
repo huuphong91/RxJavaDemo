@@ -1,9 +1,11 @@
-package com.example.rxkotlin
+package com.example.rxkotlin.views.splash_screen
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.rxkotlin.R
+import com.example.rxkotlin.views.main.MainActivity
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 
